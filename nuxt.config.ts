@@ -1,11 +1,43 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import materialIcons from 'quasar/icon-set/svg-material-icons'
+import materialIconsRound from 'quasar/icon-set/svg-material-icons-round'
+
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss','nuxt-icon'],
+  modules: ['@nuxtjs/tailwindcss','nuxt-icon','nuxt-quasar-ui'],
   devtools: { enabled: true },
   typescript: {
     typeCheck: true,
   },
-});
+  quasar: {
+    plugins: [
+      'AppFullscreen',
+      'BottomSheet',
+      'Dialog',
+      'Loading',
+      'LoadingBar',
+      'Notify',
+    ],
+    iconSet: {
+      ...materialIcons,
+      colorPicker: materialIconsRound.colorPicker,
+    },
+    extras: {
+      font: 'roboto-font',
+      fontIcons: ['material-icons'],
+      animations: 'all',
+    },
+    config: {
+      dark: true,
+    },
+    components: {
+      defaults: {
+        QBtn: {
+          glossy: true,
+        },
+      },
+    },
+  },
+})
 // 修改預設目錄名稱時須在dir中設定
 // 可修改的目錄為:layouts、middleware、pages、public
 // dir: {
