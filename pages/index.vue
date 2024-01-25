@@ -9,6 +9,9 @@
         <NuxtLink to="/count/useAsyncData"><p class="text-black">前往 useAsyncData</p></NuxtLink>
         <NuxtLink to="/abouts/useFetch"><p class="text-black">前往 useFetch</p></NuxtLink>
         <NuxtLink to="/count/useLazyAsyncData"><p class="text-black">前往 useLazyAsyncData</p></NuxtLink>
+        <NuxtLink to="/counter/increment"><p class="text-black">前往 increment</p></NuxtLink>
+        <NuxtLink to="/counter/surprise"><p class="text-black">前往 surprise</p></NuxtLink>
+        <NuxtLink to="/color"><p class="text-black">前往 color</p></NuxtLink>
       </div>
       <!-- <q-btn color="primary" label="Primary" @click="submit" /> -->
     </div>
