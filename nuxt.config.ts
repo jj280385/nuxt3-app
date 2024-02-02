@@ -39,7 +39,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: '怎麼可以讓你知道呢 :P', 
     public: {
-      apiBase: '/api'
+      apiBase: '/api',
+      googleClientId: '499349710100-kdtppmueu70ssf4mdflnucjhtuo7jbsp.apps.googleusercontent.com',
     }
   },
   
