@@ -1,52 +1,51 @@
 <template>
-  <div class="flex flex-col items-center border border-red-300">
+  <div class="flex flex-col items-center border border-red-300 p-10">
+    <!-- <ClientOnly>
+      <GoogleLogin :callback="callback" prompt/>
+    </ClientOnly> -->
     <ClientOnly>
-      <!-- <GoogleLogin :callback="callback" prompt /> -->
-      <GoogleLogin :callback="callback">
-        <button type="button" class="text-black" @click="handleGoogleLogin">
+    <GoogleLogin :callback="callback" >
+        <button @click="handleGoogleLogin">
           使用 Google 繼續
         </button>
       </GoogleLogin>
     </ClientOnly>
+    <!-- <button type="button" @click="handleGoogleLogin" class="text-black">使用 Google 繼續</button> -->
+    <div>
+      <p class="text-black">{{ userInfo }}</p>
+    </div>
   </div>
 </template>
 
 <script setup>
-// const callback = (response) => {
-//   console.log('GoogleLogin',response)
-// }
+import { googleTokenLogin } from 'vue3-google-login'
 
-// import { googleOneTap } from 'vue3-google-login';
+const runtimeConfig = useRuntimeConfig()
+const { googleClientId: GOOGLE_CLIENT_ID } = runtimeConfig.public
 
-// onMounted(() => {
-//   googleOneTap()
-//     .then((response) => {
-//       console.log('response', response);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// });
-
-import { googleAuthCodeLogin } from 'vue3-google-login';
-
-const runtimeConfig = useRuntimeConfig();
-const { googleClientId: GOOGLE_CLIENT_ID } = runtimeConfig.public;
-const userInfo = ref();
+const userInfo = ref()
 
 const handleGoogleLogin = async () => {
-  const accessToken = await googleAuthCodeLogin({
-    clientId: GOOGLE_CLIENT_ID,
-  }).then((response) => response?.access_token);
+  const accessToken = await googleTokenLogin({
+    clientId: GOOGLE_CLIENT_ID
+  }).then((response) => response?.access_token)
 
-  if (!accessToken) return '登入失敗';
-
+  if (!accessToken) {
+    return '登入失敗'
+  }
+  console.log('accessToken',accessToken)
   const { data } = await useFetch('/api/auth/google', {
     method: 'POST',
-    body: { accessToken },
-    initialCatch: false,
-  });
+    body: {
+      accessToken
+    },
+    initialCache: false
+  })
+console.log('userInfo',userInfo)
+  userInfo.value = data.value
+}
 
-  userInfo.value = data.value;
-};
+// const callback = (response) => {
+//   console.log('response',response)
+// }
 </script>

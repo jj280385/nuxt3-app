@@ -41,7 +41,9 @@ export default defineNuxtConfig({
     public: {
       apiBase: '/api',
       googleClientId: '499349710100-kdtppmueu70ssf4mdflnucjhtuo7jbsp.apps.googleusercontent.com',
-    }
+    },
+    // jwtSignSecret 作為核發 JWT 的簽署金鑰
+    jwtSignSecret: 'PLEASE_REPLACE_WITH_YOUR_KEY',
   },
   
 });
