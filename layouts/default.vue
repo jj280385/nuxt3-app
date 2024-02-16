@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-sky-100 py-2">
+  <div class="bg-sky-100 py-2 h-screen">
     <p class="px-6 py-4 text-2xl text-gray-700">
       <NuxtLink to="/">預設layout</NuxtLink>
     </p>
