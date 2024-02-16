@@ -1,6 +1,9 @@
 <template>
-  <NuxtLayout>
+  <!-- <NuxtLayout>
     <NuxtPage />
-  </NuxtLayout>
+  </NuxtLayout> -->
+  <div class="app h-screen">
+    <NuxtPage />
+    <NotificationContainer />
+  </div>
 </template>
-
