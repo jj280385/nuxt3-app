@@ -1,3 +1,4 @@
+// 此API用於實作串接 Google Oauth 登入
 //------------------------------------------------------
 // 自定義google oauth登入按鈕
 //------------------------------------------------------
@@ -128,6 +129,8 @@
 //------------------------------------------------------
 import { OAuth2Client } from 'google-auth-library'
 import jwt from 'jsonwebtoken'
+// 需自行建立db檔案
+import db from '@/server/db'
 
 // useRuntimeConfig() 取得nuxt.config.ts的runtimeConfig
 const runtimeConfig = useRuntimeConfig();
@@ -156,11 +159,42 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Payload中放置使用者資訊
-  const jwtTokenPayload = {
-    id: userInfo.sub,
-    nickname: userInfo.name,
+  // 依照使用者的 Email 回傳資料庫內是否存在一筆符合的使用者記錄
+  let userRecord = await db.user.getUserByEmail({
     email: userInfo.email
+  })
+
+  if (userRecord) {
+    if (
+      (userRecord.providerName === 'google' && userRecord.providerUserId === userInfo.sub) === false
+    ) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'This email address does not apply to this login method'
+      })
+    }
+  } else {
+    // 建立一個新的使用者至資料庫內
+    userRecord = await db.user.createUser({
+      providerName: 'google',
+      providerUserId: userInfo.sub,
+      nickname: userInfo.name,
+      email: userInfo.email,
+      password: null,
+      avatar: userInfo.picture,
+      emailVerified: userInfo.email_verified
+    })
+  }
+
+  // Payload中放置使用者資訊
+  // const jwtTokenPayload = {
+  //   id: userInfo.sub,
+  //   nickname: userInfo.name,
+  //   email: userInfo.email
+  // }
+
+  const jwtTokenPayload = {
+    id: userRecord.id
   }
 
   // 過期期限設置
@@ -184,10 +218,20 @@ export default defineEventHandler(async (event) => {
     path: '/'
   })
 
+  // return {
+  //   id: userInfo.id,
+  //   nickname: userInfo.name,
+  //   avatar: userInfo.picture,
+  //   email: userInfo.email
+  // }
   return {
-    id: userInfo.id,
-    nickname: userInfo.name,
-    avatar: userInfo.picture,
-    email: userInfo.email
+    id: userRecord.id,
+    provider: {
+      name: userRecord.providerName,
+      userId: userRecord.providerUserId
+    },
+    nickname: userRecord.nickname,
+    avatar: userRecord.avatar,
+    email: userRecord.email
   }
 })
