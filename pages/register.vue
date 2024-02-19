@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-orange-100 h-screen">
+  <div class="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
     <div class="w-full max-w-md">
       <div class="flex flex-col items-center">
         <Icon name="logos:nuxt-icon" size="80" />
@@ -125,6 +125,13 @@ import { googleTokenLogin } from 'vue3-google-login'
 const { push: pushNotify } = useNotification()
 const runtimeConfig = useRuntimeConfig()
 const { googleClientId: GOOGLE_CLIENT_ID } = runtimeConfig.public
+
+definePageMeta({
+  layout: 'green',
+  layoutTransition: {
+    name: 'slide-in'
+  }
+})
 
 const registerData = reactive({
   nickname: '',

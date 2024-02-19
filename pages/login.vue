@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-orange-100 h-screen">
+  <div class="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
     <div class="w-full max-w-md">
       <div class="flex flex-col items-center">
         <Icon name="logos:nuxt-icon" size="80" />
@@ -108,9 +108,23 @@
 <script setup>
 import { googleTokenLogin } from 'vue3-google-login'
 
+const route = useRoute()
 const { push: pushNotify } = useNotification()
 const runtimeConfig = useRuntimeConfig()
 const { googleClientId: GOOGLE_CLIENT_ID } = runtimeConfig.public
+
+// 取消預設布局模板
+definePageMeta({
+  layout: 'teal'
+})
+
+// 路由中間件
+definePageMeta({
+  middleware: 'logged-in-redirect',
+  // pageTransition: {
+  //   name: 'rotate'
+  // }
+})
 
 const loginData = reactive({
   email: '',
@@ -126,7 +140,7 @@ const handleEmailLogin = async () => {
 
   if (data.value) {
     pushNotify('success', '登入成功', '請等待頁面自動跳轉')
-    navigateTo('/')
+    navigateTo(route.query.redirect_to ?? '/')
   } else {
     pushNotify('error', '登入失敗', error.value?.data?.message ?? '未知錯誤')
   }
@@ -151,7 +165,7 @@ const handleGoogleLogin = async () => {
 
   if (data.value) {
     pushNotify('success', '登入成功', '請等待頁面自動跳轉')
-    navigateTo('/')
+    navigateTo(route.query.redirect_to ?? '/')
   } else {
     pushNotify('error', '登入失敗', error.value?.data?.message ?? '未知錯誤')
   }

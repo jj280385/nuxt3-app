@@ -11,6 +11,7 @@
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "devDependencies": {
+    "@headlessui/vue": "^1.7.19",
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
@@ -36,9 +37,22 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.9",
+    "@tiptap/extension-code": "^2.0.0-beta.202",
+    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.202",
+    "@tiptap/extension-font-family": "^2.0.0-beta.202",
+    "@tiptap/extension-image": "^2.0.0-beta.202",
+    "@tiptap/extension-link": "^2.0.0-beta.202",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.202",
+    "@tiptap/extension-text-align": "^2.0.0-beta.202",
+    "@tiptap/extension-text-style": "^2.0.0-beta.202",
+    "@tiptap/extension-underline": "^2.0.0-beta.202",
+    "@tiptap/starter-kit": "^2.0.0-beta.202",
+    "@tiptap/vue-3": "^2.0.0-beta.202",
     "@unhead/vue": "^1.8.10",
     "bcrypt": "^5.1.1",
+    "dayjs": "^1.11.10",
     "jsonwebtoken": "^9.0.2",
+    "lowlight": "^2.7.0",
     "quasar": "^2.14.2"
   }
 }

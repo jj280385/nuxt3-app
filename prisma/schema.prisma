@@ -9,9 +9,10 @@ generator client {
 datasource db {
   provider = "sqlite"
   url = "file:./dev.db"
+  relationMode = "prisma"
 }
 
-// 定義User資料表
+// 建立儲存User資料表
 model User {
   id             String   @id @default(uuid())
   providerName   String?
@@ -23,4 +24,18 @@ model User {
   emailVerified  Boolean  @default(false)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  Article        Article[]
+}
+
+// 建立儲存文章資料表
+model Article {
+  id             Int      @id @default(autoincrement())
+  title          String
+  content        String
+  cover          String
+  tags           String
+  authorId       String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  User           User?    @relation(fields: [authorId], references: [id])
 }
