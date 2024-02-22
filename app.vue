@@ -7,6 +7,28 @@
     <NotificationContainer />
   </div>
 </template>
+<script setup>
+const route = useRoute()
+const title = ref('Zora Nuxt 3 Blog')
+  const description = ref('這裡是 Zora 的 Nuxt 3 學習筆記 實戰部落格')
+  useHead({
+    title,
+    meta: [{ name: 'og:title', content: `${route.meta.title} | Nuxt 3 Blog` },{
+        name: 'description',
+        content: description
+      }],
+    link: [
+      { 
+        rel: 'preconnect', 
+        href: 'https://fonts.googleapis.com'
+      },
+      { 
+        rel: 'stylesheet', 
+        href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', 
+        crossorigin: '' 
+      }
+    ]
+  })</script>
 
 <style>
 .layout-enter-active,

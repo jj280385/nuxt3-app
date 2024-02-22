@@ -1,5 +1,6 @@
 <template>
   <div class="flex w-full flex-col items-center bg-white">
+    
     <div class="item-center mt-8 flex w-full max-w-4xl flex-col px-8 md:items-start lg:px-0">
       <h1 class="text-3xl font-semibold text-gray-800">所有文章</h1>
       <p class="mb-4 mt-2 text-sm text-gray-500">
@@ -73,7 +74,6 @@ const {
   initialCache: false
 })
 
-console.log('---* articlesResponse *---',articlesResponse)
 
 if (error.value) {
   pushNotify('error', '取得文章失敗', error.value?.data?.message ?? '未知錯誤')
@@ -83,6 +83,11 @@ watch(error, (newError) => {
   if (!newError) {
     pushNotify('error', '取得文章失敗', error.value?.data?.message ?? '未知錯誤')
   }
+})
+
+
+definePageMeta({
+  title: '所有文章123'
 })
 </script>
 

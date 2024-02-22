@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     // 'nuxt-quasar-ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/i18n'
   ],
   devtools: { enabled: true },
   typescript: {
@@ -57,6 +58,29 @@ export default defineNuxtConfig({
     layoutTransition: {
       name: 'rotate',
     }  
+  },
+  i18n: {
+      langDir: 'locales',
+      locales: [
+        {
+          code: 'en',
+          iso: 'en-US',
+          file: 'en.json',
+          name: 'en'
+        },
+        {
+          code: 'zh',
+          iso: 'zh-TW',
+          file: 'zh.json',
+          name: 'zh-TW'
+        }
+      ],
+      defaultLocale: 'zh',
+      strategy: 'no_prefix',
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n'
+      },
   }
 });
 // 修改預設目錄名稱時須在dir中設定
