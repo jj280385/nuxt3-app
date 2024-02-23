@@ -121,9 +121,9 @@ definePageMeta({
 // 路由中間件
 definePageMeta({
   middleware: 'logged-in-redirect',
-  // pageTransition: {
-  //   name: 'rotate'
-  // }
+  pageTransition: {
+    name: 'rotate'
+  }
 })
 
 const loginData = reactive({

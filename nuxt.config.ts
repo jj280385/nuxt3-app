@@ -3,6 +3,7 @@
 // import materialIconsRound from 'quasar/icon-set/svg-material-icons-round';
 
 export default defineNuxtConfig({
+  ssr: true,
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
@@ -52,12 +53,12 @@ export default defineNuxtConfig({
     transpile: ['@headlessui/vue']
   },
   app: {
-    pageTransition: {
-      name: 'blur',
-    },
-    layoutTransition: {
-      name: 'rotate',
-    }  
+    // pageTransition: {
+    //   name: 'blur',
+    // },
+    // layoutTransition: {
+    //   name: 'rotate',
+    // }  
   },
   i18n: {
       langDir: 'locales',
