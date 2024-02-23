@@ -388,7 +388,7 @@ import { Placeholder } from '@tiptap/extension-placeholder'
 import { Underline } from '@tiptap/extension-underline'
 import { Link } from '@tiptap/extension-link'
 import { Image } from '@tiptap/extension-image'
-import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+// import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
 import { lowlight } from 'lowlight/lib/core'
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
@@ -439,9 +439,9 @@ onMounted(() => {
       Placeholder.configure({
         placeholder: '請輸入文章內容...'
       }),
-      CodeBlockLowlight.configure({
-        lowlight
-      })
+      // CodeBlockLowlight.configure({
+      //   lowlight
+      // })
     ],
     content: props.modelValue,
     editorProps: {

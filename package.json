@@ -41,7 +41,6 @@
   "dependencies": {
     "@quasar/extras": "^1.16.9",
     "@tiptap/extension-code": "^2.0.0-beta.202",
-    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.202",
     "@tiptap/extension-font-family": "^2.0.0-beta.202",
     "@tiptap/extension-image": "^2.0.0-beta.202",
     "@tiptap/extension-link": "^2.0.0-beta.202",
@@ -56,6 +55,7 @@
     "dayjs": "^1.11.10",
     "jsonwebtoken": "^9.0.2",
     "lowlight": "^2.7.0",
-    "quasar": "^2.14.2"
+    "quasar": "^2.14.2",
+    "vue-i18n": "^9.9.1"
   }
 }
