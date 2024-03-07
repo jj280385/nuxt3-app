@@ -6,3 +6,6 @@
     </span>
   </div>
 </template>
+<script setup>
+console.log('客戶端渲染')
+</script>
